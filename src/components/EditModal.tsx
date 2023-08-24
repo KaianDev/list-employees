@@ -66,7 +66,7 @@ export const EditModal = ({
                     />
                 </div>
                 <div className="flex gap-4 justify-end my-2">
-                    <button className="px-2 py-1 bg-red-500 rounded-md hover:bg-red-600">
+                    <button onClick={() => setEditModal(false)} className="px-2 py-1 bg-red-500 rounded-md hover:bg-red-600">
                         Cancelar
                     </button>
                     <button
