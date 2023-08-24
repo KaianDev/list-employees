@@ -20,11 +20,11 @@ export const EditInputField = ({
 }: Props) => {
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const clone = { ...editFields };
-        clone[name] = e.target.value;
+        clone[name as keyof Fields] = e.target.value;
         setEditFields(clone);
     };
     return (
-        <div className="my-2">
+        <div className="my-2 text-white">
             <label className="cursor-pointer my-1 inline-block" htmlFor={id}>
                 {label}
             </label>
@@ -32,7 +32,7 @@ export const EditInputField = ({
                 type={type}
                 id={id}
                 className="px-2 py-1 text-lg rounded-md outline-none bg-slate-800 text-white w-full"
-                value={editFields[name]}
+                value={editFields[name as keyof Fields]}
                 onChange={handleChangeInput}
             />
         </div>

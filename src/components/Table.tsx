@@ -17,9 +17,9 @@ export const Table = ({
     setEditModal,
 }: Props) => {
     return (
-        <div className="sm:px-2">
-            <table className="w-full max-w-4xl mx-auto bg-slate-600 rounded-md overflow-hidden sm:border sm:shadow-lg shadow-black/50">
-                <thead className="sm:bg-slate-800 border-b">
+        <div className="px-2">
+            <table className="w-full max-w-4xl mx-auto bg-slate-600 rounded-md overflow-hidden border shadow-lg shadow-black/50 text-white">
+                <thead className="bg-slate-800 border-b">
                     <tr className="text-left">
                         <th className="p-2">Nome</th>
                         <th className="p-2 hidden sm:table-cell">Função</th>

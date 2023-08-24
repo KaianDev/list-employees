@@ -107,9 +107,9 @@ const Page = () => {
     };
 
     return (
-        <div className=" h-screen bg-slate-600 sm:bg-gradient-to-b from-gray-700 via-gray-900 to-black">
+        <div className=" h-screen bg-gradient-to-b from-gray-700 via-gray-900 to-black">
             <Header />
-            <div className="p-4 flex justify-between items-center w-full sm:max-w-3xl mx-auto">
+            <div className="text-white p-4 flex justify-between items-center w-full sm:max-w-3xl mx-auto">
                 <p className="text-lg">Lista de Funcionários</p>
                 <button
                     onClick={() => setAddModal(true)}

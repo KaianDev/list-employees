@@ -28,7 +28,7 @@ export const EditModal = ({
                         Editar cadastro de Funcionário
                     </h2>
                     <button
-                        className=" bg-zinc-600 flex rounded-sm justify-center items-center w-6 h-6 hover:bg-red-500"
+                        className=" bg-zinc-600 flex rounded-sm justify-center items-center text-white w-6 h-6 hover:bg-red-500"
                         onClick={() => setEditModal(false)}>
                         <FaX />
                     </button>
@@ -66,12 +66,12 @@ export const EditModal = ({
                     />
                 </div>
                 <div className="flex gap-4 justify-end my-2">
-                    <button onClick={() => setEditModal(false)} className="px-2 py-1 bg-red-500 rounded-md hover:bg-red-600">
+                    <button onClick={() => setEditModal(false)} className="px-2 py-1 bg-red-500 rounded-md text-white hover:bg-red-600">
                         Cancelar
                     </button>
                     <button
                         onClick={handleConfirmEditClick}
-                        className="px-2 py-1 bg-green-500 rounded-md hover:bg-green-600">
+                        className="px-2 py-1 text-white bg-green-500 rounded-md hover:bg-green-600">
                         Confirmar
                     </button>
                 </div>

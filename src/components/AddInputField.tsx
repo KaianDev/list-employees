@@ -21,14 +21,14 @@ export const AddInputField = ({
 
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
-        const clone:Fields = { ...fields };
-        clone[name] = e.target.value;
+        const clone: Fields = { ...fields };
+        clone[name as keyof Fields] = e.target.value;
         setFields(clone);
         console.log(fields);
     };
 
     return (
-        <div className="my-2">
+        <div className="my-2 text-white">
             <label className="cursor-pointer my-1 inline-block" htmlFor={id}>
                 {label}
             </label>
