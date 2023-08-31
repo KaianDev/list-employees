@@ -29,8 +29,8 @@ type RemoveEmployee = {
     };
 };
 
-type ActionList = AddEmployee | EditEmployee | RemoveEmployee;
-export const listOfEmployees = (list: Employee[], action: ActionList) => {
+export type ListActions = AddEmployee | EditEmployee | RemoveEmployee;
+export const listOfEmployees = (list: Employee[], action: ListActions) => {
     switch (action.type) {
         case "add":
             return [

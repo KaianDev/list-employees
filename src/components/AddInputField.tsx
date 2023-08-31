@@ -1,12 +1,13 @@
-import { ChangeEvent, useState } from "react";
 import { Fields } from "@/types/Fields";
+import { ChangeEvent, useState } from "react";
+
 type Props = {
     label: string;
-    id: string;
     type?: string;
+    id: string;
     name: string;
-    setFields: (fields: Fields) => void;
     fields: Fields;
+    setFields: (fields: Fields) => void;
 };
 
 export const AddInputField = ({
@@ -24,7 +25,6 @@ export const AddInputField = ({
         const clone: Fields = { ...fields };
         clone[name as keyof Fields] = e.target.value;
         setFields(clone);
-        console.log(fields);
     };
 
     return (

@@ -1,27 +1,48 @@
+import { AddInputField } from "./AddInputField";
+import { FaX } from "react-icons/fa6";
+import { useState } from "react";
+import { useList } from "@/contexts/EmployeesContext";
 import { Fields } from "@/types/Fields";
 
-import { AddInputField } from "./AddInputField";
-
-import { FaX } from "react-icons/fa6";
-
 type Props = {
-    onClickCancelBtn: () => void;
-    onClickAddBtn: () => void;
-    fields: Fields;
-    setFields: (fields: Fields) => void;
+    closeModal: () => void;
 };
-export const AddModal = ({
-    onClickCancelBtn,
-    fields,
-    setFields,
-    onClickAddBtn,
-}: Props) => {
-    const handleClickCancelBtn = () => {
-        onClickCancelBtn();
-    };
 
-    const handleClickAddBtn = () => {
-        onClickAddBtn();
+export const AddModal = ({ closeModal }: Props) => {
+    const [inputField, setInputField] = useState<Fields>({
+        firstName: "",
+        lastName: "",
+        wage: "",
+        role: "",
+    });
+    
+    const listCtx = useList();
+
+    const handleAddEmployee = () => {
+        if (
+            inputField.firstName.trim() !== "" &&
+            inputField.lastName.trim() !== "" &&
+            inputField.role.trim() !== "" &&
+            inputField.wage.trim() !== ""
+        ) {
+            listCtx?.dispatch({
+                type: "add",
+                payload: {
+                    firstName: inputField.firstName,
+                    lastName: inputField.lastName,
+                    role: inputField.role,
+                    wage: inputField.wage,
+                },
+            });
+            closeModal();
+            for (let i in inputField) {
+                inputField[i as keyof Fields] = "";
+            }
+        } else {
+            alert(
+                "Um ou mais campos estão vazios, verifique e tente novamente"
+            );
+        }
     };
 
     return (
@@ -33,7 +54,7 @@ export const AddModal = ({
                     </h2>
                     <button
                         className=" bg-zinc-600 flex rounded-sm justify-center items-center text-white w-6 h-6 hover:bg-red-500"
-                        onClick={handleClickCancelBtn}
+                        onClick={closeModal}
                     >
                         <FaX />
                     </button>
@@ -44,41 +65,41 @@ export const AddModal = ({
                         label="Nome"
                         id="firstNameField"
                         name="firstName"
-                        fields={fields}
-                        setFields={setFields}
+                        fields={inputField}
+                        setFields={setInputField}
                     />
                     <AddInputField
                         label="Sobrenome"
                         id="lastNameField"
                         name="lastName"
-                        fields={fields}
-                        setFields={setFields}
+                        fields={inputField}
+                        setFields={setInputField}
                     />
                     <AddInputField
                         label="Função"
                         id="roleField"
                         name="role"
-                        fields={fields}
-                        setFields={setFields}
+                        fields={inputField}
+                        setFields={setInputField}
                     />
                     <AddInputField
                         label="Salário"
                         id="wageField"
                         type="number"
                         name="wage"
-                        fields={fields}
-                        setFields={setFields}
+                        fields={inputField}
+                        setFields={setInputField}
                     />
                 </div>
                 <div className="flex gap-4 justify-end my-2">
                     <button
-                        onClick={handleClickCancelBtn}
+                        onClick={closeModal}
                         className="px-2 py-1 bg-red-500 rounded-md text-white hover:bg-red-600"
                     >
                         Cancelar
                     </button>
                     <button
-                        onClick={handleClickAddBtn}
+                        onClick={handleAddEmployee}
                         className="px-2 py-1 bg-green-500 rounded-md text-white hover:bg-green-600"
                     >
                         Adicionar

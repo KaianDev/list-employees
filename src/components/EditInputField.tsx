@@ -18,6 +18,7 @@ export const EditInputField = ({
     editFields,
     setEditFields,
 }: Props) => {
+    
     const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         const clone = { ...editFields };
         clone[name as keyof Fields] = e.target.value;
