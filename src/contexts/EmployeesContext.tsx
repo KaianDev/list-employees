@@ -5,6 +5,7 @@ import {
     useContext,
     useEffect,
     useReducer,
+    useState,
 } from "react";
 import { Employee } from "@/types/Employee";
 import { ListActions, listOfEmployees } from "@/reducers/listOfEmployees";
@@ -21,15 +22,24 @@ export const EmployeesContext = createContext<ContextType | null>(null);
 interface EmployeeProviderProps {
     children: ReactNode;
 }
+
 export function EmployeeProvider({ children }: EmployeeProviderProps) {
+    const [isMounted, setIsMounted] = useState(false);
     const [employeesList, dispatch] = useReducer(
         listOfEmployees,
-        JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+        typeof window !== "undefined"
+            ? JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+            : []
     );
 
     useEffect(() => {
+        setIsMounted(true);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(employeesList));
     }, [employeesList]);
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <EmployeesContext.Provider value={{ employeesList, dispatch }}>
